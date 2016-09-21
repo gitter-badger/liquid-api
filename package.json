@@ -6,7 +6,10 @@
   "dependencies": {
     "lodash": "^4.15.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^3.5.0",
+    "eslint-config-airbnb-base": "^7.1.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

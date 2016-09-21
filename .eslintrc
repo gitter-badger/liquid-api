@@ -1,0 +1,12 @@
+{
+  "extends": "airbnb-base/legacy",
+  "rules": {
+    "comma-dangle": ["error", "always-multiline"],
+    "func-names": "off",
+    "no-param-reassign": "off",
+    "no-plusplus": "off",
+    "no-prototype-builtins": "off",
+    "semi": ["error", "never"],
+    "vars-on-top": "off",
+  },
+}
