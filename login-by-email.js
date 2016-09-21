@@ -30,8 +30,8 @@
 // - [ ] Send an email with their hashed link to authenticate
 // - [ ] Accept the followup request to authenticate GET /auth?id=[session_uid]
 
-
 const isEmail = require('isemail')
+const r = require('rethinkdb')
 
 module.exports = (req, res) => {
   const { email } = req.body
@@ -41,5 +41,21 @@ module.exports = (req, res) => {
     res.status(400).send('Invalid email')
   }
 
-  res.status(201).send('An email has been sent with further instructions.')
+  r.table('voters').filter({ email }).run(req.app.locals.dbConn)
+    .call('toArray')
+    .then(results => { // eslint-disable-line consistent-return
+      // If we've never seen this email before:
+      if (results.length === 0) {
+        // Insert the new email into voters table
+        return r.table('voters').insert({
+          email,
+          date_joined: r.now(),
+        }).run(req.app.locals.dbConn)
+        // TODO: Send welcome email
+      }
+    })
+    .then(() => {
+      // TODO: Send login email
+      res.status(201).send('An email has been sent with further instructions.')
+    })
 }
