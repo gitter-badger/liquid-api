@@ -6,6 +6,7 @@
   "rules": {
     "comma-dangle": ["error", "always-multiline"],
     "func-names": "off",
+    "max-len": "off",
     "no-param-reassign": "off",
     "no-plusplus": "off",
     "no-prototype-builtins": "off",
