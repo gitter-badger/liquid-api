@@ -5,6 +5,7 @@
   },
   "rules": {
     "comma-dangle": ["error", "always-multiline"],
+    "consistent-return": "off",
     "func-names": "off",
     "global-require": "off",
     "max-len": "off",
@@ -12,6 +13,7 @@
     "no-param-reassign": "off",
     "no-plusplus": "off",
     "no-prototype-builtins": "off",
+    "padded-blocks": "off",
     "semi": ["error", "never"],
     "vars-on-top": "off",
   },
