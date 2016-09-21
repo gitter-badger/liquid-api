@@ -7,7 +7,8 @@
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "isemail": "^2.2.1",
-    "lodash": "^4.15.0"
+    "lodash": "^4.15.0",
+    "rethink": "^1.4.0"
   },
   "devDependencies": {
     "eslint": "^3.5.0",
