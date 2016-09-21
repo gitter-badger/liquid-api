@@ -4,6 +4,7 @@
   "description": "Backend API to manage a liquid democracy",
   "main": "index.js",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "lodash": "^4.15.0"
   },
