@@ -1,17 +1,14 @@
-var r = require('rethinkdb')
-
 // Grab our .env environment variables
 require('dotenv').config()
-const DB_CERT = require('fs').readFileSync('./.db_cert.ca')
 
 console.log('Connecting to db...')
-r.connect({
+require('rethinkdb').connect({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   db: process.env.DB_NAME,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
-  ssl: { ca: DB_CERT },
+  ssl: { ca: require('fs').readFileSync('./.db_cert.ca') },
 })
 .tap(dbConn => console.log('Connected to db as user:', dbConn.rawSocket.user))
 .then(dbConn => {
