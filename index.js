@@ -29,5 +29,5 @@ r.connect({
   app.post('/login-by-email', require('./login-by-email.js'))
 
   // Start Express server
-  app.listen(3000, () => console.log('Server listening on port 3000')) // eslint-disable-line no-console
+  app.listen(process.env.PORT, () => console.log('Server listening on port', process.env.PORT))
 })
