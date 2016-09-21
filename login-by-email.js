@@ -42,24 +42,22 @@ module.exports = (req, res) => {
     return
   }
 
-  r.table('voters').filter({ email }).run(req.app.locals.dbConn)
-    .call('toArray')
+  // Is this a new email?
+  r.table('voters').filter({ email }).run(req.app.locals.dbConn).call('toArray')
+  .then(results => {
+    if (results.length === 0) {
 
-    .then(results => {
-      // Is this a new email?
-      if (results.length === 0) {
+      // Insert the new email into voters table
+      return r.table('voters').insert({
+        email,
+        date_joined: r.now(),
+      }).run(req.app.locals.dbConn)
 
-        // Insert the new email into voters table
-        return r.table('voters').insert({
-          email,
-          date_joined: r.now(),
-        }).run(req.app.locals.dbConn)
-
-        // TODO: Send welcome email
-      }
-    })
-    .then(() => {
-      // TODO: Send login email
-      res.status(201).send('An email has been sent with further instructions.')
-    })
+      // TODO: Send welcome email
+    }
+  })
+  .then(() => {
+    // TODO: Send login email
+    res.status(201).send('An email has been sent with further instructions.')
+  })
 }
