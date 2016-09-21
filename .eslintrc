@@ -1,5 +1,8 @@
 {
   "extends": "airbnb-base/legacy",
+  "parserOptions": {
+    "ecmaVersion": 6,
+  },
   "rules": {
     "comma-dangle": ["error", "always-multiline"],
     "func-names": "off",
