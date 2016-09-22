@@ -17,8 +17,8 @@ require('rethinkdb').connect({
   // Store the db connection for later
   app.locals.dbConn = dbConn
 
-  // Enable json parsing
-  app.use(require('body-parser').json())
+  app.use(require('body-parser').json()) // Enable json parsing
+  app.disable('x-powered-by') // remove 'x-powered-by' header
 
   // Define routes
   app.get('/', (req, res) => res.send('Hello world'))
