@@ -32,6 +32,7 @@
 
 const isEmail = require('isemail')
 const r = require('rethinkdb')
+const sendWelcomeEmail = require('./send-welcome-email')
 
 module.exports = (req, res) => {
   const { email } = req.body
@@ -47,13 +48,14 @@ module.exports = (req, res) => {
   .then(results => {
     if (results.length === 0) {
 
-      // Insert the new email into voters table
+      // Insert the new email address into voters table
       return r.table('voters').insert({
         email,
         date_joined: r.now(),
       }).run(req.app.locals.dbConn)
 
-      // TODO: Send welcome email
+      // Send welcome email
+      .then(() => sendWelcomeEmail(email))
     }
   })
   .then(() => {
