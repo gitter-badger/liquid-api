@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "Backend API to manage a liquid democracy",
   "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
@@ -16,18 +20,14 @@
     "eslint-config-airbnb-base": "^7.1.0",
     "eslint-plugin-import": "^1.15.0"
   },
-  "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/crowdocracy/liquid-api.git"
+    "url": "git+ssh://git@github.com/liquidvote/liquid-api.git"
   },
   "author": "David Ernst <npm@dsernst.com> (http://dsernst.com)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/crowdocracy/liquid-api/issues"
+    "url": "https://github.com/liquidvote/liquid-api/issues"
   },
-  "homepage": "https://github.com/crowdocracy/liquid-api#readme"
+  "homepage": "https://github.com/liquidvote/liquid-api#readme"
 }
