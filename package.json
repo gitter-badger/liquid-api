@@ -17,7 +17,8 @@
     "isemail": "^2.2.1",
     "lodash": "^4.15.0",
     "mailgun-js": "^0.7.12",
-    "rethink": "^1.4.0"
+    "rethink": "^1.4.0",
+    "ssl-root-cas": "^1.2.2"
   },
   "devDependencies": {
     "eslint": "^3.5.0",

@@ -1,6 +1,9 @@
 // Grab our .env environment variables
 require('dotenv').config()
 
+// Inject Standard SSL Root CAs so Heroku trusts self-signed DB cert
+require('ssl-root-cas').inject()
+
 console.log('Connecting to db...')
 require('rethinkdb').connect({
   host: process.env.DB_HOST,
