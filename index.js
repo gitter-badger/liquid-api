@@ -8,7 +8,7 @@ require('rethinkdb').connect({
   db: process.env.DB_NAME,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
-  ssl: { ca: require('fs').readFileSync('./.db_cert.ca') },
+  ssl: { ca: process.env.DB_SSL_CERT },
 })
 .tap(dbConn => console.log('Connected to db as user:', dbConn.rawSocket.user))
 .then(dbConn => {
