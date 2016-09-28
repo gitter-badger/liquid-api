@@ -1,5 +1,5 @@
 // Grab our .env environment variables
-require('dotenv').config()
+require('dotenv').config({ silent: true })
 
 console.log('Connecting to db...')
 require('rethinkdb').connect({
