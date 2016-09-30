@@ -1,0 +1,8 @@
+const mailgun = new (require('mailgun-js'))({ apiKey: process.env.MAILGUN_API_KEY, domain: process.env.MAILGUN_DOMAIN })
+
+module.exports = (email, sessionId) => mailgun.messages().send({
+  from: `Liquid Vote <info@${process.env.MAILGUN_DOMAIN}>`,
+  to: email,
+  subject: 'Sign in to Liquid Democracy',
+  html: `Click this magic link to sign in: liquidvote://?secret=${sessionId}`,
+})

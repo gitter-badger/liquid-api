@@ -27,11 +27,12 @@
 //
 // - [x] Accept the initial request POST /login-by-email
 // - [x] Lookup if they're in DB. Add if not.
-// - [ ] Send an email with their hashed link to authenticate
+// - [x] Send an email with their secret link to authenticate
 
 const isEmail = require('isemail')
 const r = require('rethinkdb')
 const sendWelcomeEmail = require('./send-welcome-email')
+const sendLoginEmail = require('./send-login-email')
 
 module.exports = (req, res) => {
   const { email } = req.body
@@ -44,7 +45,7 @@ module.exports = (req, res) => {
 
   // Is this a new email?
   r.table('voters').filter({ email }).run(req.app.locals.dbConn).call('toArray')
-  .then((voters) => {
+  .tap((voters) => {
     if (voters.length === 0) {
 
       // Insert the new email address into voters table
@@ -57,8 +58,22 @@ module.exports = (req, res) => {
       .then(() => sendWelcomeEmail(email))
     }
   })
-  .then(() => {
-    // TODO: Send login email
+  .then(([voter]) => {
+
+    // Are they approved for beta?
+    if (voter && voter.beta_access) {
+
+      // Create new session
+      r.table('sessions').insert({
+        email,
+        date_created: r.now(),
+        voter_id: voter.id,
+      }).run(req.app.locals.dbConn)
+
+      // Send login email
+      .then(result => sendLoginEmail(email, result.generated_keys[0]))
+    }
+
     res.status(201).send('An email has been sent with further instructions.')
   })
 }
