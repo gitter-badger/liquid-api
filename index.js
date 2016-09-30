@@ -14,14 +14,14 @@ require('rethinkdb').connect({
   },
 })
 .tap(dbConn => console.log('Connected to db as user:', dbConn.rawSocket.user))
-.then(dbConn => {
-  var app = require('express')()
+.then((dbConn) => {
+  const app = require('express')()
 
   // Store the db connection for later
   app.locals.dbConn = dbConn
 
-  app.use(require('body-parser').json()) // Enable json parsing
   app.disable('x-powered-by') // remove 'x-powered-by' header
+  app.use(require('body-parser').json()) // Enable json parsing
 
   // Define routes
   app.get('/', (req, res) => res.send('Hello world'))

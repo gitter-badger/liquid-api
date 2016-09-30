@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "eslint ."
   },
   "engines": {
     "node": ">=6.6.0"
@@ -17,7 +17,7 @@
     "isemail": "^2.2.1",
     "lodash": "^4.15.0",
     "mailgun-js": "^0.7.12",
-    "rethink": "^1.4.0"
+    "rethinkdb": "^2.3.3"
   },
   "devDependencies": {
     "eslint": "^3.5.0",

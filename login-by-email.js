@@ -5,7 +5,7 @@
 // Expects:
 //
 // {
-//   email: String, email regex, <1 - 200 characters>
+//   email: String, email regex
 // }
 //
 // Response:
@@ -28,7 +28,6 @@
 // - [x] Accept the initial request POST /login-by-email
 // - [x] Lookup if they're in DB. Add if not.
 // - [ ] Send an email with their hashed link to authenticate
-// - [ ] Accept the followup request to authenticate GET /auth?id=[session_uid]
 
 const isEmail = require('isemail')
 const r = require('rethinkdb')
@@ -45,8 +44,8 @@ module.exports = (req, res) => {
 
   // Is this a new email?
   r.table('voters').filter({ email }).run(req.app.locals.dbConn).call('toArray')
-  .then(results => {
-    if (results.length === 0) {
+  .then((voters) => {
+    if (voters.length === 0) {
 
       // Insert the new email address into voters table
       return r.table('voters').insert({

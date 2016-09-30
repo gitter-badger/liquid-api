@@ -1,12 +1,11 @@
 const mailgun = new (require('mailgun-js'))({ apiKey: process.env.MAILGUN_API_KEY, domain: process.env.MAILGUN_DOMAIN })
 
-module.exports = (email) => {
-  return mailgun.messages().send({
-    from: 'Liquid Vote <info@' + process.env.MAILGUN_DOMAIN + '>',
-    to: email,
-    bcc: 'david@liquid.vote',
-    subject: 'Liquid Democracy signup confirmed',
-    html: `Hi,
+module.exports = email => mailgun.messages().send({
+  from: `Liquid Vote <info@${process.env.MAILGUN_DOMAIN}>`,
+  to: email,
+  bcc: 'david@liquid.vote',
+  subject: 'Liquid Democracy signup confirmed',
+  html: `Hi,
 
   This confirms your registration to stay tuned about Liquid Democracy, via <a href="http://join.liquid.vote">http://join.liquid.vote</a>. Thank you.
 
@@ -19,5 +18,4 @@ module.exports = (email) => {
   Learn more at <a href="http://liquid.vote">http://liquid.vote</a>.
 
   Thanks!`.replace(/(\n)/g, '<br />'),
-  })
-}
+})

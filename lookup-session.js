@@ -13,7 +13,7 @@ module.exports = (req, res) => {
 
   // Lookup the session
   r.table('sessions').get(req.params.session_id).run(req.app.locals.dbConn)
-  .then(session => {
+  .then((session) => {
 
     // Not found?
     if (!session) return res.status(404).send('Not found')
@@ -28,8 +28,8 @@ module.exports = (req, res) => {
     // Send back voter info
     .then(result => res.send(result))
   })
-  .catch(error => {
-    console.err(error)
+  .catch((error) => {
+    console.error(error)
     res.status(400).send('errr')
   })
 }
