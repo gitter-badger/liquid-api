@@ -25,6 +25,7 @@ require('rethinkdb').connect({
 
   // Define routes
   app.get('/', (req, res) => res.send('Hello world'))
+  app.get('/session/:session_id', require('./lookup-session.js'))
   app.get('/voters', require('./get-num-voters.js'))
   app.post('/voters', require('./create-voter.js'))
   app.post('/login-by-email', require('./login-by-email.js'))
