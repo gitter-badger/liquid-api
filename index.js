@@ -27,7 +27,7 @@ require('rethinkdb').connect({
   app.get('/', (req, res) => res.send('Hello world'))
   app.get('/session/:session_id', require('./lookup-session.js'))
   app.get('/voters', require('./get-num-voters.js'))
-  app.post('/voters', require('./create-voter.js'))
+  app.put('/voters/:voter_id', require('./update-voter-info.js'))
   app.post('/login-by-email', require('./login-by-email.js'))
 
   // Start Express server
