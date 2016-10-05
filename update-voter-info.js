@@ -14,10 +14,11 @@ module.exports = (req, res) => {
   const { full_name, zip } = req.body
 
   // Update voter with their new info
-  return r.table('voters').get(req.params.voter_id).update({
-    full_name,
-    zip,
-  }).run(req.app.locals.dbConn)
+  const changes = {}
+  if (full_name) changes.full_name = full_name // eslint-disable-line camelcase
+  if (zip) changes.zip = zip
+
+  return r.table('voters').get(req.params.voter_id).update(changes).run(req.app.locals.dbConn)
   .then(() => {
     res.send('Updated')
   })
