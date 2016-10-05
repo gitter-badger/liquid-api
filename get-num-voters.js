@@ -12,7 +12,7 @@ const r = require('rethinkdb')
 module.exports = (req, res) => {
   r.table('voters').count().run(req.app.locals.dbConn)
   .then(result => (
-    res.status(201).set({
+    res.status(200).set({
       'X-Total-Count': result,
     }).send()
   ))
