@@ -22,12 +22,7 @@
 // As long as we get their email, we can follow up with them later.
 //
 // It makes for a very simple form so they can begin the signup process as quickly as possible. We can collect their other signup info next.
-
-// TODO
 //
-// - [x] Accept the initial request POST /login-by-email
-// - [x] Lookup if they're in DB. Add if not.
-// - [x] Send an email with their secret link to authenticate
 
 const isEmail = require('isemail')
 const r = require('rethinkdb')

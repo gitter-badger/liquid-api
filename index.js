@@ -30,6 +30,7 @@ require('rethinkdb').connect({
   app.put('/voters/:voter_id', require('./update-voter-info.js'))
   app.post('/login-by-email', require('./login-by-email.js'))
   app.get('/sf-ballot-measures', require('./get-ballot-measures.js'))
+  app.get('/sf-ballot-measures/votes/:voter_id', require('./get-ballot-measures-votes.js'))
 
   // Start Express server
   app.listen(process.env.PORT, () => console.log('Server listening on port', process.env.PORT))

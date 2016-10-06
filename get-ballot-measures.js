@@ -6,9 +6,11 @@
 //
 //   [
 //     {
-//      name: 'Proposition A: San Francisco Unified School District Bond Issue',
-//      letter: 'A',
-//      more_info: 'https://ballotpedia.org/San_Francisco_Unified_School_District,_California,_Bond_Issue,_Proposition_A_(November_2016)'
+//       href: '/San_Francisco_Unified_School_District,_California,_Bond_Issue,_Proposition_A_(November_2016)',
+//       title: 'San Francisco Unified School District, California, Bond Issue, Proposition A (November 2016)',
+//       type: 'Proposition',
+//       letter: 'A',
+//       name: 'San Francisco Unified School District Bond Issue',
 //     },
 //     ...
 //   ]
