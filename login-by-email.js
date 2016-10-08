@@ -55,8 +55,7 @@ module.exports = (req, res) => {
   })
   .then(([voter]) => {
 
-    // Are they approved for beta?
-    if (voter && voter.beta_access) {
+    if (voter) {
 
       // Create new session
       r.table('sessions').insert({
