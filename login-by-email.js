@@ -30,7 +30,8 @@ const sendWelcomeEmail = require('./send-welcome-email')
 const sendLoginEmail = require('./send-login-email')
 
 module.exports = (req, res) => {
-  const { email } = req.body
+  // Email addresses are case insensitive
+  const email = req.body.email.toLowerCase()
 
   // Is it a valid email?
   if (!isEmail.validate(email)) {
