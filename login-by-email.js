@@ -30,6 +30,11 @@ const sendWelcomeEmail = require('./send-welcome-email')
 const sendLoginEmail = require('./send-login-email')
 
 module.exports = (req, res) => {
+  if (!req.body.email) {
+    res.status(400).send('No email provided.')
+    return
+  }
+
   // Email addresses are case insensitive
   const email = req.body.email.toLowerCase()
 
