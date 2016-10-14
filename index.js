@@ -22,6 +22,7 @@ require('rethinkdb').connect({
 
   app.disable('x-powered-by') // remove 'x-powered-by' header
   app.use(require('body-parser').json()) // Enable json parsing
+  app.use(require('cors'))
 
   // Define routes
   app.get('/', (req, res) => res.send('Hello world'))
