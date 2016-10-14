@@ -49,6 +49,7 @@ module.exports = (req, res) => {
     // Is this a new email?
     if (!voter) {
       res.status(409).send('You have already subscribed to Liquid Democracy. Thank you.')
+      return
     }
 
     // Insert the new email address into voters table
