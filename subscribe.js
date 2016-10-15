@@ -45,9 +45,9 @@ module.exports = (req, res) => {
   }
 
   r.table('voters').filter({ email }).run(req.app.locals.dbConn).call('toArray')
-  .tap(([voter]) => {
+  .tap(([existingVoter]) => {
     // Is this a duplicate email?
-    if (voter) {
+    if (existingVoter) {
       res.status(409).send('You have already subscribed to Liquid Democracy. Thank you.')
       return
     }
