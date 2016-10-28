@@ -7,7 +7,7 @@ module.exports = email => mailgun.messages().send({
   subject: 'Liquid Democracy signup confirmed',
   html: `Hi,
 
-  This confirms your registration to stay tuned about Liquid Democracy, via <a href="http://join.liquid.vote">http://join.liquid.vote</a>. Thank you.
+  This confirms your registration to stay tuned about Liquid Democracy. Thank you.
 
   We'll keep you in the loop about major announcements, such as when the first version of the Liquid Democracy app is available.
 
