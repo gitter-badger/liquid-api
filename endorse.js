@@ -61,7 +61,7 @@ module.exports = (req, res) => {
   mailgun.messages().send({
     from: `Liquid Vote <info@${process.env.MAILGUN_DOMAIN}>`,
     to: email || 'missing-email@liquid.vote',
-    bcc: 'david@liquid.vote',
+    bcc: 'info@liquid.vote',
     subject: 'Thanks for supporting Liquid Democracy',
     html: `Hi ${firstName || ''},
 
