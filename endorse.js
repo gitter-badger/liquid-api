@@ -29,6 +29,7 @@ const mailgun = new (require('mailgun-js'))({ apiKey: process.env.MAILGUN_API_KE
 module.exports = (req, res) => {
 
   let email
+  const { endorsement, displayName, zip, pledge } = req.body
 
   // Is it a valid email?
   if (req.body.email && isEmail.validate(req.body.email)) {
@@ -45,6 +46,8 @@ module.exports = (req, res) => {
 
         // Insert the new email address into voters table
         return r.table('voters').insert({
+          full_name: displayName,
+          zip,
           email,
           date_joined: r.now(),
         }).run(req.app.locals.dbConn)
@@ -67,15 +70,25 @@ module.exports = (req, res) => {
 
     Here's confirmation of your endorsement and/or pledge for Liquid Democracy, via <a href="https://contribute.liquid.vote">https://contribute.liquid.vote</a>.
 
-    Endorsement: ${req.body.endorsement || ''}
-    Display Name: ${req.body.displayName || ''}
-    ZIP: ${req.body.zip || ''}
+    Endorsement: ${endorsement || ''}
+    Display Name: ${displayName || ''}
+    ZIP: ${zip || ''}
 
-    Pledge: $${req.body.pledge || '0'}
+    Pledge: $${pledge || '0'}
 
     We'll let you know when the campaign launches, and follow-up about payment processing then.
 
     Thank you!`.replace(/(\n)/g, '<br />'),
   })
+
+  r.table('endorsements').insert({
+    email,
+    endorsement,
+    pledge,
+    displayName,
+    zip,
+    approved: false,
+    created: r.now(),
+  }).run(req.app.locals.dbConn)
 
 }
