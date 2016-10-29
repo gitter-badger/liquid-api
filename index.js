@@ -26,14 +26,14 @@ require('rethinkdb').connect({
 
   // Define routes
   app.get('/', (req, res) => res.send('Hello world'))
-  app.get('/session/:session_id', require('./lookup-session.js'))
-  app.get('/voters', require('./get-num-voters.js'))
-  app.put('/voters/:voter_id', require('./update-voter-info.js'))
-  app.post('/login-by-email', require('./login-by-email.js'))
-  app.post('/subscribe', require('./subscribe.js'))
   app.post('/endorse', require('./endorse.js'))
+  app.post('/login-by-email', require('./login-by-email.js'))
+  app.get('/session/:session_id', require('./lookup-session.js'))
   app.get('/sf-ballot-measures', require('./get-ballot-measures.js'))
   app.get('/sf-ballot-measures/votes/:voter_id', require('./get-ballot-measures-votes.js'))
+  app.post('/subscribe', require('./subscribe.js'))
+  app.get('/voters', require('./get-num-voters.js'))
+  app.put('/voters/:voter_id', require('./update-voter-info.js'))
 
   // Start Express server
   app.listen(process.env.PORT, () => console.log('Server listening on port', process.env.PORT))
