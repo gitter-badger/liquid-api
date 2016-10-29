@@ -27,6 +27,7 @@ require('rethinkdb').connect({
   // Define routes
   app.get('/', (req, res) => res.send('Hello world'))
   app.post('/endorse', require('./endorse.js'))
+  app.get('/endorsements-and-pledges', require('./get-endorsements-and-pledges.js'))
   app.post('/login-by-email', require('./login-by-email.js'))
   app.get('/session/:session_id', require('./lookup-session.js'))
   app.get('/sf-ballot-measures', require('./get-ballot-measures.js'))
