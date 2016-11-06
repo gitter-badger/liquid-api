@@ -4,6 +4,7 @@
     "ecmaVersion": 6,
   },
   "rules": {
+    "camelcase": "off",
     "comma-dangle": ["error", "always-multiline"],
     "consistent-return": "off",
     "func-names": "off",
