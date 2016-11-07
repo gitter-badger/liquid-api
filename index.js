@@ -31,10 +31,10 @@ require('rethinkdb').connect({
   app.post('/login-by-email', require('./login-by-email.js'))
   app.get('/session/:session_id', require('./lookup-session.js'))
   app.get('/sf-ballot-measures', require('./get-ballot-measures.js'))
-  app.get('/sf-ballot-measures/votes/:voter_id', require('./get-ballot-measures-votes.js'))
   app.post('/subscribe', require('./subscribe.js'))
   app.get('/voters', require('./get-num-voters.js'))
   app.put('/voters/:voter_id', require('./update-voter-info.js'))
+  app.get('/votes/:voter_id', require('./get-users-votes.js'))
   app.post('/votes/:voter_id', require('./update-users-votes.js'))
 
   // Start Express server
