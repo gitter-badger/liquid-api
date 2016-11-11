@@ -20,6 +20,7 @@ require('rethinkdb').connect({
   // Store the db connection for later
   app.locals.dbConn = dbConn
 
+  app.enable('trust proxy') // use x-forwarded-by for request ip
   app.disable('x-powered-by') // remove 'x-powered-by' header
   app.use(require('body-parser').json()) // Enable json parsing
   app.use(require('cors')())
@@ -28,6 +29,7 @@ require('rethinkdb').connect({
   app.get('/', (req, res) => res.send('Hello world'))
   app.post('/endorse', require('./endorse.js'))
   app.get('/endorsements-and-pledges', require('./get-endorsements-and-pledges.js'))
+  app.get('/location', require('./get-location.js'))
   app.post('/login-by-email', require('./login-by-email.js'))
   app.get('/session/:session_id', require('./lookup-session.js'))
   app.get('/sf-ballot-measures', require('./get-ballot-measures.js'))
