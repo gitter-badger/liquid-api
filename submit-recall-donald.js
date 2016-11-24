@@ -29,9 +29,20 @@
 const r = require('rethinkdb')
 
 module.exports = (req, res) => {
-  r.table('recallDonald').insert(Object.assign({}, req.body, {
-    date: r.now(),
-  })).run(req.app.locals.dbConn)
+  const newDoc = {
+    email: req.body.email,
+    zip: req.body.zip,
+    date: new Date(),
+  }
+
+  // Convert boolean votes into 0 and 1 for easier sums
+  ;[
+    'HILLARY CLINTON', 'TED CRUZ', 'BERNIE SANDERS', 'MIKE PENCE', 'JOHN KASICH', 'MITT ROMNEY', 'PAUL RYAN', 'JOE BIDEN', 'GARY JOHNSON', 'ED MCMULLEN', 'JILL STEIN', 'ELIZABETH WARREN',
+  ].forEach((name) => {
+    newDoc[name] = Number(req.body[name])
+  })
+
+  r.table('recallDonald').insert(newDoc).run(req.app.locals.dbConn)
   .then(() => {
     res.status(201).send('Submission recorded.')
   })
