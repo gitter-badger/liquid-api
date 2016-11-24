@@ -32,6 +32,7 @@ require('rethinkdb').connect({
   app.get('/endorsements-and-pledges', require('./get-endorsements-and-pledges.js'))
   app.get('/location', require('./get-location.js'))
   app.post('/login-by-email', require('./login-by-email.js'))
+  app.post('/recalldonald', require('./submit-recall-donald.js'))
   app.get('/session/:session_id', require('./lookup-session.js'))
   app.get('/sf-ballot-measures', require('./get-ballot-measures.js'))
   app.post('/subscribe', require('./subscribe.js'))
