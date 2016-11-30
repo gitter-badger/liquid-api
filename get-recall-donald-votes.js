@@ -35,7 +35,7 @@ module.exports = (req, res) => {
     'PAUL RYAN': left('PAUL RYAN').add(right('PAUL RYAN')),
     'JOE BIDEN': left('JOE BIDEN').add(right('JOE BIDEN')),
     'GARY JOHNSON': left('GARY JOHNSON').add(right('GARY JOHNSON')),
-    'ED MCMULLEN': left('ED MCMULLEN').add(right('ED MCMULLEN')),
+    'EVAN MCMULLIN': left('ED MCMULLEN').add(right('ED MCMULLEN')),
     'JILL STEIN': left('JILL STEIN').add(right('JILL STEIN')),
     'ELIZABETH WARREN': left('ELIZABETH WARREN').add(right('ELIZABETH WARREN')),
   })).run(req.app.locals.dbConn)
