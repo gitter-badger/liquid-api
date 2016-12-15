@@ -6,7 +6,7 @@
 // {
 //   email: 'bob@email.com',
 //   'BERNIE SANDERS': true,
-//   'ED MCMULLEN': true,
+//   'EVAN MCMULLIN': true,
 //   'ELIZABETH WARREN': true,
 //   'GARY JOHNSON': true,
 //   'HILLARY CLINTON': true,
@@ -37,7 +37,7 @@ module.exports = (req, res) => {
 
   // Convert boolean votes into 0 and 1 for easier sums
   ;[
-    'HILLARY CLINTON', 'TED CRUZ', 'BERNIE SANDERS', 'MIKE PENCE', 'JOHN KASICH', 'MITT ROMNEY', 'PAUL RYAN', 'JOE BIDEN', 'GARY JOHNSON', 'ED MCMULLEN', 'JILL STEIN', 'ELIZABETH WARREN',
+    'HILLARY CLINTON', 'TED CRUZ', 'BERNIE SANDERS', 'MIKE PENCE', 'JOHN KASICH', 'MITT ROMNEY', 'PAUL RYAN', 'JOE BIDEN', 'GARY JOHNSON', 'EVAN MCMULLIN', 'JILL STEIN', 'ELIZABETH WARREN',
   ].forEach((name) => {
     newDoc[name] = Number(req.body[name])
   })
