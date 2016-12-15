@@ -1,5 +1,6 @@
 // Grab our .env environment variables
 require('dotenv').config({ silent: true })
+require('newrelic')
 
 console.log('Connecting to db...')
 require('rethinkdb').connect({
