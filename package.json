@@ -20,7 +20,8 @@
     "lodash": "^4.15.0",
     "mailgun-js": "^0.7.12",
     "newrelic": "^1.35.1",
-    "rethinkdb": "^2.3.3"
+    "rethinkdb": "^2.3.3",
+    "twilio": "^2.11.1"
   },
   "devDependencies": {
     "eslint": "^3.5.0",

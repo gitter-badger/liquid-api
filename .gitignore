@@ -1,3 +1,4 @@
 node_modules/
 .env
 .db_cert.ca
+newrelic_agent.log

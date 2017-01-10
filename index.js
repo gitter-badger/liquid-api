@@ -33,6 +33,7 @@ require('rethinkdb').connect({
   app.get('/endorsements-and-pledges', require('./get-endorsements-and-pledges.js'))
   app.get('/location', require('./get-location.js'))
   app.post('/login-by-email', require('./login-by-email.js'))
+  app.post('/login-by-phone', require('./login-by-phone.js'))
   app.get('/recalldonald/numvoters', require('./get-recall-donald-num-voters.js'))
   app.get('/recalldonald/votes', require('./get-recall-donald-votes.js'))
   app.post('/recalldonald', require('./submit-recall-donald.js'))
