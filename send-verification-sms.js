@@ -6,7 +6,7 @@ module.exports = (phone, sessionId) => client.messages.create({
   body: `Are you ready for Liquid Democracy? Click here to verify your phone: https://app.liquid.vote/?secret=${sessionId}`,
   // TODO: change link to https://app.liquid.vote/confirm/aec4b2a
   to: `+1${phone}`,  // Text this number
-  from: '+14159692808',
+  from: `+1${process.env.TWILIO_NUMBER}`,
 }, (err) => {
   if (err) {
     return console.error(err)
