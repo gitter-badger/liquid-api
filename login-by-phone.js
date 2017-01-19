@@ -50,6 +50,8 @@ module.exports = (req, res) => {
         phone,
         date_joined: r.now(),
       }).run(req.app.locals.dbConn)
+
+      // TODO: Use send-verification-sms.js for their first time logging in by phone.
     }
   })
   .then(([voter]) => {
