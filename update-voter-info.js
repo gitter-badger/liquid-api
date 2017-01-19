@@ -4,19 +4,19 @@
 //
 // body
 // {
-//   full_name: String <1 – 100 characters>,
-//   zip: String, 00000 < x < 99999,
+//   full_name: String
+//   secret: String
 // }
 
 const r = require('rethinkdb')
 
 module.exports = (req, res) => {
-  const { full_name, zip } = req.body
+  const { full_name, secret } = req.body
 
   // Update voter with their new info
   const changes = {}
   if (full_name) changes.full_name = full_name // eslint-disable-line camelcase
-  if (zip) changes.zip = zip
+  if (secret) changes.secret = secret
 
   return r.table('voters').get(req.params.voter_id).update(changes).run(req.app.locals.dbConn)
   .then(() => {
