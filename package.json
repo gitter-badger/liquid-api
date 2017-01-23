@@ -24,9 +24,9 @@
     "twilio": "^2.11.1"
   },
   "devDependencies": {
-    "eslint": "^3.5.0",
-    "eslint-config-airbnb-base": "^7.1.0",
-    "eslint-plugin-import": "^1.15.0"
+    "eslint": "^3.14.0",
+    "eslint-config-airbnb-base": "^11.0.1",
+    "eslint-plugin-import": "^2.2.0"
   },
   "repository": {
     "type": "git",
