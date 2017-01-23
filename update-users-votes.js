@@ -39,12 +39,32 @@ module.exports = (req, res) => {
     return res.status(400).send(`Invalid position: ${position}`)
   }
 
-  return r.table('votes').insert({
-    bill_id,
-    date: r.now(),
-    position,
-    voter_id: req.params.voter_id,
-  }).run(req.app.locals.dbConn)
+  // Did the user already vote on this bill?
+  r.table('votes').filter({ bill_id, voter_id: req.params.voter_id })
+  .run(req.app.locals.dbConn).call('toArray')
+  .then(([oldVote]) => {
+    // If there's already a vote, update it
+    if (oldVote) {
+      const newVote = Object.assign({}, oldVote)
+
+      // Store the previous position
+      if (oldVote.previousPositions === undefined) { newVote.previousPositions = [] }
+      newVote.previousPositions.push({ date: oldVote.date, position: oldVote.position })
+
+      newVote.date = r.now()
+      newVote.position = position
+
+      return r.table('votes').replace(newVote).run(req.app.locals.dbConn)
+    }
+
+    // Otherwise insert a new vote
+    return r.table('votes').insert({
+      bill_id,
+      date: r.now(),
+      position,
+      voter_id: req.params.voter_id,
+    }).run(req.app.locals.dbConn)
+  })
   .then(() => {
     res.status(201).send('Vote recorded.')
   })

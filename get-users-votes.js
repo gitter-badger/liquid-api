@@ -18,15 +18,11 @@ const r = require('rethinkdb')
 
 module.exports = (req, res) => {
   // Lookup a voters' positions
-  r.table('votes').filter({ voter_id: req.params.voter_id })
-    // Only grab the most recent vote for that bill
-    .group('bill_id')
-    .max('date')
-    .run(req.app.locals.dbConn)
+  r.table('votes').filter({ voter_id: req.params.voter_id }).run(req.app.locals.dbConn)
   .call('toArray')
   // Only send back the bill_id and position
   .reduce((memo, bill) => {
-    memo[bill.group] = bill.reduction.position
+    memo[bill.bill_id] = bill.position
     return memo
   }, {})
   .then(votes => res.status(200).send(votes))
