@@ -22,6 +22,11 @@
 //   message: "Invalid registration code."
 // }
 //
+// {
+//   status: 400,
+//   message: "Missing required field."
+// }
+//
 //
 
 const r = require('rethinkdb')
@@ -29,6 +34,10 @@ const r = require('rethinkdb')
 module.exports = (req, res) => {
 
   const { phone, registrationSecret } = req.body
+
+  if (!phone || !registrationSecret) {
+    res.status(400).send('Missing required field.')
+  }
 
   // Lookup the phone number
   r.table('voters').filter({ phone }).run(req.app.locals.dbConn).call('toArray')
