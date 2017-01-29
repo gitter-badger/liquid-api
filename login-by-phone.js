@@ -23,7 +23,6 @@
 // It makes for a very simple form so they can begin the signup process as quickly as possible. We can collect their other signup info next.
 //
 
-const cryptoRandomString = require('crypto-random-string')
 const r = require('rethinkdb')
 const sendLoginSMS = require('./send-login-sms')
 const sendRegistrationSMS = require('./send-registration-sms')
@@ -47,7 +46,8 @@ module.exports = (req, res) => {
   .then(([voter]) => {
     if (!voter) {
 
-      const registrationSecret = cryptoRandomString(6)
+      // Generate a random number from [100, 999]
+      const registrationSecret = Math.floor(Math.random() * (899)) + 100
 
       // Insert the new phone number into voters table
       r.table('voters').insert({
@@ -60,14 +60,16 @@ module.exports = (req, res) => {
       .then(() => sendRegistrationSMS(phone, registrationSecret))
 
       res.status(201).send('A text message has been sent to register your phone.')
+
     } else {
+
       // Is this a number that's been typed in before, but isn't verified?
       // TODO: Better handling for this case
       if (!voter.registration_verified_at) {
         return res.status(401).send('This number\'s voter registration is incomplete.')
       }
 
-      // Verified phone number, log them in.
+      // // Verified phone number, log them in!
 
       // Create new session
       r.table('sessions').insert({
