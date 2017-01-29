@@ -52,7 +52,7 @@ module.exports = (req, res) => {
       // Insert the new email address into voters table
       return r.table('voters').insert({
         email,
-        date_joined: r.now(),
+        first_seen: r.now(),
       }).run(req.app.locals.dbConn)
 
       // Send welcome email

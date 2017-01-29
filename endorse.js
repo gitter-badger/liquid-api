@@ -49,7 +49,7 @@ module.exports = (req, res) => {
           full_name: displayName,
           zip,
           email,
-          date_joined: r.now(),
+          first_seen: r.now(),
         }).run(req.app.locals.dbConn)
 
         // Send welcome email
