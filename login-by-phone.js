@@ -1,6 +1,9 @@
 // POST /login-by-phone
 //
-// Hit this endpoint to begin authentication.
+// Hit this endpoint to begin authentication by phone number.
+//
+// Users can use this to authenticate whether they've already signed up or not.
+// In either case, they'll receive an sms with a hashed link to activate their session.
 //
 // Expects:
 //
@@ -15,12 +18,8 @@
 //   message: "A text message has been sent with further instructions."
 // }
 //
-// When they hit this endpoint, a new row will be created in the sessions collection.
 //
-// Users can use this to authenticate whether they've already signed up or not.
-// In either case, they'll receive an sms with a hashed link to activate their session.
 //
-// It makes for a very simple form so they can begin the signup process as quickly as possible. We can collect their other signup info next.
 //
 
 const r = require('rethinkdb')
