@@ -19,6 +19,7 @@
 // Response:
 //
 // {
+//   status: 200,
 //   message: "Updated."
 // }
 //
@@ -48,6 +49,6 @@ module.exports = (req, res) => {
 
   return r.table('voters').get(req.params.voter_id).update(changes).run(req.app.locals.dbConn)
   .then(() => {
-    res.send('Updated')
+    res.status(200).send('Updated')
   })
 }
