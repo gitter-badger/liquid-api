@@ -25,7 +25,7 @@ module.exports = (req, res) => {
   // Simplify db response syntax
   .reduce((memo, position) => (Object.assign(memo, {
     [position.group]: position.reduction,
-  })), {})
+  })), { yea: 0, nay: 0, abstain: 0 })
 
   .then(results => res.status(200).send(results))
 }
