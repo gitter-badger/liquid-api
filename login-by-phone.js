@@ -63,8 +63,12 @@ module.exports = (req, res) => {
     } else {
 
       // Is this a number that's been typed in before, but isn't verified?
-      // TODO: Better handling for this case
       if (!voter.registration_verified_at) {
+
+        if (voter.registrationSecret) {
+          sendRegistrationSMS(phone, voter.registrationSecret)
+        }
+
         return res.status(401).send('This number\'s voter registration is incomplete.')
       }
 
