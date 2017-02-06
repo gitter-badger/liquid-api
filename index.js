@@ -28,6 +28,7 @@ require('rethinkdb').connect({
 
   // Define routes
   app.get('/', (req, res) => res.send('Hello world'))
+  app.post('/accept-invite', require('./accept-invite.js'))
   app.get('/bills', require('./get-bills.js'))
   app.post('/confirm-phone', require('./confirm-phone.js'))
   app.post('/endorse', require('./endorse.js'))
