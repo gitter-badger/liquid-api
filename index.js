@@ -45,8 +45,8 @@ require('rethinkdb').connect({
   app.post('/subscribe', require('./subscribe.js'))
   app.get('/voters', require('./get-num-voters.js'))
   app.put('/voters/:voter_id', require('./update-voter-info.js'))
+  app.post('/vote/', require('./vote-on-bill.js'))
   app.get('/votes/:voter_id', require('./get-users-votes.js'))
-  app.post('/votes/:voter_id', require('./update-users-votes.js'))
   app.get('/votes/bill/:bill_uid', require('./get-bill-votes.js'))
 
   // Start Express server
