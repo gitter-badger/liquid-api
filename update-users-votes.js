@@ -4,7 +4,7 @@
 //
 // body
 // {
-// bill_id: bill_id,
+// bill_uid: bill_uid,
 // position: ['yea', 'nay', 'abstain'],
 // }
 //
@@ -16,11 +16,11 @@
 // }
 // {
 //   status: 400,
-//   message: "Invalid bill_id: req.body.bill_id"
+//   message: "Invalid bill_uid: req.body.bill_uid"
 // }
 // {
 //   status: 400,
-//   message: "Invalid position: req.body.bill_id"
+//   message: "Invalid position: req.body.bill_uid"
 // }
 //
 // TODO: Authenticate this route
@@ -29,10 +29,10 @@
 const r = require('rethinkdb')
 
 module.exports = (req, res) => {
-  const { bill_id, position } = req.body
+  const { bill_uid, position } = req.body
 
-  if (!bill_id) {
-    return res.status(400).send(`Invalid bill_id: ${bill_id}`)
+  if (!bill_uid) {
+    return res.status(400).send(`Invalid bill_uid: ${bill_uid}`)
   }
 
   if (!['yea', 'nay', 'abstain'].includes(position)) {
@@ -40,7 +40,7 @@ module.exports = (req, res) => {
   }
 
   // Did the user already vote on this bill?
-  r.table('votes').filter({ bill_id, voter_id: req.params.voter_id })
+  r.table('votes').filter({ bill_uid, voter_id: req.params.voter_id })
   .run(req.app.locals.dbConn).call('toArray')
   .then(([oldVote]) => {
     // If there's already a vote, update it
@@ -59,7 +59,7 @@ module.exports = (req, res) => {
 
     // Otherwise insert a new vote
     return r.table('votes').insert({
-      bill_id,
+      bill_uid,
       date: r.now(),
       position,
       voter_id: req.params.voter_id,

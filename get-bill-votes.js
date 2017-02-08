@@ -1,4 +1,4 @@
-// GET /votes/bill/:bill_id
+// GET /votes/bill/:bill_uid
 //
 // Hit this endpoint to get direct vote counts on a bill
 //
@@ -16,7 +16,7 @@ const r = require('rethinkdb')
 module.exports = (req, res) => {
   r.table('votes')
 
-  .filter({ bill_id: req.params.bill_id })
+  .filter({ bill_uid: req.params.bill_uid })
 
   // Count the positions at the db level
   .group('position').count()
