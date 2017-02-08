@@ -4,9 +4,10 @@
 //
 // body
 // {
-//   bill_uid: bill_uid,
+//   bill_uid: String,
 //   position: ['yea', 'nay', 'abstain'],
-//   voter_id: voter_id,
+//   secret: String,
+//   voter_id: String,
 // }
 //
 // Response:
@@ -32,7 +33,7 @@
 const r = require('rethinkdb')
 
 module.exports = (req, res) => {
-  const { bill_uid, position, voter_id } = req.body
+  const { bill_uid, position, voter_id, secret } = req.body
 
   // Did they include a bill?
   if (!bill_uid) {
@@ -51,14 +52,14 @@ module.exports = (req, res) => {
 
       // If there's already an old vote, update it
       if (oldVote) {
-        const newVote = Object.assign({}, oldVote)
+        const newVote = Object.assign({
+          date: r.now(),
+          position,
+          secret,
+        }, oldVote)
 
         // Save the previous position
         newVote.previousPositions.push({ date: oldVote.date, position: oldVote.position })
-
-        // Overwrite the new values
-        newVote.date = r.now()
-        newVote.position = position
 
         return r.table('votes').replace(newVote).run(req.app.locals.dbConn)
       }
@@ -69,6 +70,7 @@ module.exports = (req, res) => {
         date: r.now(),
         position,
         previousPositions: [],
+        secret,
         voter_id: req.params.voter_id,
       }).run(req.app.locals.dbConn)
 
