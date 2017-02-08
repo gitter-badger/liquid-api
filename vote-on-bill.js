@@ -52,11 +52,11 @@ module.exports = (req, res) => {
 
       // If there's already an old vote, update it
       if (oldVote) {
-        const newVote = Object.assign({
+        const newVote = Object.assign({}, oldVote, {
           date: r.now(),
           position,
           secret,
-        }, oldVote)
+        })
 
         // Save the previous position
         newVote.previousPositions.push({ date: oldVote.date, position: oldVote.position })
@@ -71,7 +71,7 @@ module.exports = (req, res) => {
         position,
         previousPositions: [],
         secret,
-        voter_id: req.params.voter_id,
+        voter_id,
       }).run(req.app.locals.dbConn)
 
     })
