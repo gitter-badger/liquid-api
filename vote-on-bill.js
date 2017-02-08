@@ -31,6 +31,7 @@
 //
 
 const r = require('rethinkdb')
+const _ = require('lodash')
 
 module.exports = (req, res) => {
   const { bill_uid, position, voter_id, secret } = req.body
@@ -59,7 +60,7 @@ module.exports = (req, res) => {
         })
 
         // Save the previous position
-        newVote.previousPositions.push({ date: oldVote.date, position: oldVote.position })
+        newVote.previousPositions.push(_.pick(oldVote, ['date', 'position']))
 
         return r.table('votes').replace(newVote).run(req.app.locals.dbConn)
       }
