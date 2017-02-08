@@ -4,6 +4,7 @@
   "description": "Backend API to manage a liquid democracy",
   "main": "index.js",
   "scripts": {
+    "fix": "eslint . --fix",
     "start": "node index.js",
     "test": "eslint ."
   },
@@ -20,6 +21,7 @@
     "lodash": "^4.15.0",
     "mailgun-js": "^0.8.0",
     "newrelic": "^1.35.1",
+    "random-word": "^2.0.0",
     "rethinkdb": "^2.3.3",
     "twilio": "^2.11.1"
   },

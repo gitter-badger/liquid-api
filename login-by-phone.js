@@ -18,13 +18,11 @@
 //   message: "A text message has been sent with further instructions."
 // }
 //
-//
-//
-//
 
 const r = require('rethinkdb')
 const sendLoginSMS = require('./send-login-sms')
 const sendRegistrationSMS = require('./send-registration-sms')
+const randomWord = require('random-word')
 
 module.exports = (req, res) => {
   const { phone } = req.body
@@ -53,6 +51,7 @@ module.exports = (req, res) => {
         first_seen: r.now(),
         phone,
         registrationSecret,
+        secret: `${randomWord()}-${randomWord()}-${randomWord()}`,
       }).run(req.app.locals.dbConn)
 
       // Send registration sms
