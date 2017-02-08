@@ -48,6 +48,7 @@ require('rethinkdb').connect({
   app.post('/vote/', require('./vote-on-bill.js'))
   app.get('/votes/:voter_id', require('./get-users-votes.js'))
   app.get('/votes/bill/:bill_uid', require('./get-bill-votes.js'))
+  app.get('/votes/bill/:bill_uid/verification', require('./publish-vote-verification.js'))
 
   // Start Express server
   app.listen(process.env.PORT, () => console.log('Server listening on port', process.env.PORT))
