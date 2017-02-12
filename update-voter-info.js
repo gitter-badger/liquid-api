@@ -3,6 +3,7 @@
 // Expects:
 //
 // {
+//   address: String
 //   claims_is_registered_voter: Boolean
 //   email: String
 //   first_name: String
@@ -30,6 +31,7 @@ const sendDebugEmail = require('./send-debug-email')
 module.exports = (req, res) => {
 
   const acceptedFields = [
+    'address',
     'claims_is_registered_voter',
     'email',
     'first_name',
