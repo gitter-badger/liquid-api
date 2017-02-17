@@ -5,6 +5,7 @@
 // body
 // {
 //   bill_uid: String,
+//   explanation: String,
 //   position: ['yea', 'nay', 'abstain'],
 //   secret: String,
 //   voter_id: String,
@@ -34,7 +35,7 @@ const r = require('rethinkdb')
 const _ = require('lodash')
 
 module.exports = (req, res) => {
-  const { bill_uid, position, voter_id, secret } = req.body
+  const { bill_uid, explanation, position, secret, voter_id } = req.body
 
   // Did they include a bill?
   if (!bill_uid) {
@@ -55,12 +56,13 @@ module.exports = (req, res) => {
       if (oldVote) {
         const newVote = Object.assign({}, oldVote, {
           date: r.now(),
+          explanation,
           position,
           secret,
         })
 
         // Save the previous position
-        newVote.previousPositions.push(_.pick(oldVote, ['date', 'position']))
+        newVote.previousPositions.push(_.pick(oldVote, ['date', 'explanation', 'position']))
 
         return r.table('votes').replace(newVote).run(req.app.locals.dbConn)
       }
@@ -69,6 +71,7 @@ module.exports = (req, res) => {
       return r.table('votes').insert({
         bill_uid,
         date: r.now(),
+        explanation,
         position,
         previousPositions: [],
         secret,
