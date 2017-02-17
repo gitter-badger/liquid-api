@@ -31,6 +31,7 @@ require('rethinkdb').connect({
   app.post('/accept-invite', require('./accept-invite.js'))
   app.get('/bills', require('./get-bills.js'))
   app.post('/confirm-phone', require('./confirm-phone.js'))
+  app.post('/delegates', require('./sync-delegation.js'))
   app.post('/endorse', require('./endorse.js'))
   app.get('/endorsements-and-pledges', require('./get-endorsements-and-pledges.js'))
   app.post('/feedback', require('./receive-feedback.js'))
