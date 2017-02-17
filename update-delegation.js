@@ -1,4 +1,4 @@
-// POST /delegates — Sync updated delegatation list
+// POST /delegates — Update delegatation list
 //
 // Expects:
 //
