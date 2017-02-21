@@ -5,6 +5,7 @@
 // {
 //   address: String
 //   claims_is_registered_voter: Boolean
+//   complete: Boolean
 //   email: String
 //   first_name: String
 //   full_name: String
@@ -56,7 +57,7 @@ module.exports = (req, res) => {
   })
   .then(() => {
     // Notify admin if they appeared to finish registration prompts
-    if (req.body.claims_is_registered_voter) {
+    if (req.body.complete) {
       r.table('voters').get(req.params.voter_id).run(req.app.locals.dbConn)
       .then((voter) => {
         sendDebugEmail(
