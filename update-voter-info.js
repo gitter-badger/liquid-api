@@ -51,14 +51,14 @@ module.exports = (req, res) => {
   }, {})
 
 
-  return r.table('voters').get(req.params.voter_id).update(changes).run(req.app.locals.dbConn)
+  return r.table('users').get(req.params.voter_id).update(changes).run(req.app.locals.dbConn)
   .then(() => {
     res.status(200).send('Updated')
   })
   .then(() => {
     // Notify admin if they appeared to finish registration prompts
     if (req.body.complete) {
-      r.table('voters').get(req.params.voter_id).run(req.app.locals.dbConn)
+      r.table('users').get(req.params.voter_id).run(req.app.locals.dbConn)
       .then((voter) => {
         sendDebugEmail(
           'New registration request',

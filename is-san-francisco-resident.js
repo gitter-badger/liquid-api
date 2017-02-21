@@ -9,7 +9,7 @@ const sfZipCodes = [94102, 94103, 94104, 94105, 94107, 94108, 94109, 94110, 9411
 db().then(dbConn =>
 
   r
-    .table('voters')
+    .table('users')
     .filter(doc =>
       r.expr(sfZipCodes).contains(doc('zip'))
     )

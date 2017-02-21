@@ -39,7 +39,7 @@ module.exports = (req, res) => {
   }
 
   // Is this a new phone number?
-  r.table('voters').filter({ phone }).run(req.app.locals.dbConn).call('toArray')
+  r.table('users').filter({ phone }).run(req.app.locals.dbConn).call('toArray')
   .then(([voter]) => {
     if (!voter) {
 
@@ -47,7 +47,7 @@ module.exports = (req, res) => {
       const registrationSecret = Math.floor(Math.random() * (899)) + 100
 
       // Insert the new phone number into voters table
-      r.table('voters').insert({
+      r.table('users').insert({
         first_seen: r.now(),
         phone,
         registrationSecret,

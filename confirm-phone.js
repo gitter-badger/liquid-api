@@ -43,7 +43,7 @@ module.exports = (req, res) => {
   }
 
   // Lookup the phone number
-  r.table('voters').filter({ phone }).run(req.app.locals.dbConn).call('toArray')
+  r.table('users').filter({ phone }).run(req.app.locals.dbConn).call('toArray')
   .then(([voter]) => {
 
     // Is the phone number known and the registration secrets match?
@@ -53,7 +53,7 @@ module.exports = (req, res) => {
     }
 
     // Update the voter's phone_confirmed_at field
-    r.table('voters')
+    r.table('users')
     .get(voter.id)
     .update({ phone_confirmed_at: new Date() })
     .run(req.app.locals.dbConn)

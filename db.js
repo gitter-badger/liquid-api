@@ -6,7 +6,7 @@
 //    const r = require('rethinkdb')
 //
 //    db().then(dbConn =>
-//      r.table('voters').run(dbConn).call('toArray')
+//      r.table('users').run(dbConn).call('toArray')
 //      .then(console.log)
 //    )
 

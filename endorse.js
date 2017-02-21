@@ -40,12 +40,12 @@ module.exports = (req, res) => {
     res.status(201).send('Thank you.')
 
     // Is this a new email?
-    r.table('voters').filter({ email }).run(req.app.locals.dbConn).call('toArray')
+    r.table('users').filter({ email }).run(req.app.locals.dbConn).call('toArray')
     .tap(([existingVoter]) => {
       if (!existingVoter) {
 
-        // Insert the new email address into voters table
-        return r.table('voters').insert({
+        // Insert the new email address into users table
+        return r.table('users').insert({
           full_name: displayName,
           zip,
           email,

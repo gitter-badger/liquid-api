@@ -30,7 +30,7 @@ module.exports = (req, res) => {
   const { delegates, voter_id } = req.body
 
   // Save the delegation for this voter
-  return r.table('voters').get(voter_id).update({
+  return r.table('users').get(voter_id).update({
     delegates,
   }).run(req.app.locals.dbConn)
 

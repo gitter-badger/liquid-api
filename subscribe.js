@@ -44,7 +44,7 @@ module.exports = (req, res) => {
     return
   }
 
-  r.table('voters').filter({ email }).run(req.app.locals.dbConn).call('toArray')
+  r.table('users').filter({ email }).run(req.app.locals.dbConn).call('toArray')
   .tap(([existingVoter]) => {
     // Is this a duplicate email?
     if (existingVoter) {
@@ -53,7 +53,7 @@ module.exports = (req, res) => {
     }
 
     // Insert the new email address into voters table
-    return r.table('voters').insert({
+    return r.table('users').insert({
       email,
       first_seen: r.now(),
     }).run(req.app.locals.dbConn)

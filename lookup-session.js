@@ -23,7 +23,7 @@ module.exports = (req, res) => {
       .update({ last_seen: new Date() }).run(req.app.locals.dbConn)
 
     // Lookup the corresponding voter
-    .return(r.table('voters').get(session.voter_id).run(req.app.locals.dbConn))
+    .return(r.table('users').get(session.voter_id).run(req.app.locals.dbConn))
 
     // Send back voter info
     .then(result => res.send(result))
