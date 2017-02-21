@@ -30,6 +30,7 @@ require('rethinkdb').connect({
   app.get('/', (req, res) => res.send('Hello world'))
   app.post('/accept-invite', require('./accept-invite.js'))
   app.get('/bills', require('./get-bills.js'))
+  app.get('/bills/:bill_uid/arguments', require('./get-bill-arguments.js'))
   app.post('/confirm-phone', require('./confirm-phone.js'))
   app.get('/delegates/:voter_id', require('./get-delegation.js'))
   app.post('/delegates', require('./update-delegation.js'))
