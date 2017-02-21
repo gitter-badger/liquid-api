@@ -6,9 +6,9 @@ console.log('Connecting to db...')
 require('rethinkdb').connect({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
-  db: process.env.DB_NAME,
+  db: process.env.DB_NAME, // eslint-disable-line sort-keys
   user: process.env.DB_USER,
-  password: process.env.DB_PASS,
+  password: process.env.DB_PASS, // eslint-disable-line sort-keys
   ssl: {
     ca: process.env.DB_SSL_CERT,
     rejectUnauthorized: false, // TODO: temp fix for Heroku rejecting self-signed ssl certificate

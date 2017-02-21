@@ -58,6 +58,6 @@ module.exports = (req, res) => {
     .update({ phone_confirmed_at: new Date() })
     .run(req.app.locals.dbConn)
     // Send success reply
-    .then(() => res.send(res.status(202).send({ text: 'Confirmed.', registrationId: voter.id })))
+    .then(() => res.send(res.status(202).send({ registrationId: voter.id, text: 'Confirmed.' })))
   })
 }

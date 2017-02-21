@@ -77,8 +77,8 @@ module.exports = (req, res) => {
 
       // Create new session
       r.table('sessions').insert({
-        phone,
         date_created: r.now(),
+        phone,
         voter_id: voter.id,
       }).run(req.app.locals.dbConn)
 

@@ -32,7 +32,7 @@ module.exports = (req, res) => {
   // Simplify db response syntax
   .reduce((memo, position) => (Object.assign(memo, {
     [position.group]: position.reduction,
-  })), { yea: [], nay: [], abstain: [] })
+  })), { yea: [], nay: [], abstain: [] }) // eslint-disable-line sort-keys
 
   .then(results => res.status(200).send(results))
 }

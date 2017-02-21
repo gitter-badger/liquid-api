@@ -1,3 +1,5 @@
+/* eslint-disable sort-keys */
+
 // Manually connect to db
 //
 // Usage:

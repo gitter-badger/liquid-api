@@ -15,6 +15,7 @@
     "no-plusplus": "off",
     "no-prototype-builtins": "off",
     "padded-blocks": "off",
+    sort-keys: 'error', // style
     "semi": ["error", "never"],
     "vars-on-top": "off",
   },

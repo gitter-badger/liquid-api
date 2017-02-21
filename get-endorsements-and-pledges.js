@@ -24,9 +24,9 @@ module.exports = (req, res) => {
   r.table('endorsements').filter({ approved: true }).run(req.app.locals.dbConn).call('toArray')
   .then(approvedPledges => (
     res.status(200).send({
-      total_pledged: _.sumBy(approvedPledges, 'pledge'),
       backers: approvedPledges.filter(doc => typeof doc.pledge === 'number' && doc.pledge > 0).length,
       endorsements: approvedPledges.map(doc => _.pick(doc, ['displayName', 'endorsement', 'created'])),
+      total_pledged: _.sumBy(approvedPledges, 'pledge'),
     })
   ))
 }

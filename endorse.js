@@ -46,10 +46,10 @@ module.exports = (req, res) => {
 
         // Insert the new email address into users table
         return r.table('users').insert({
-          full_name: displayName,
-          zip,
           email,
           first_seen: r.now(),
+          full_name: displayName,
+          zip,
         }).run(req.app.locals.dbConn)
 
         // Send welcome email
@@ -64,8 +64,9 @@ module.exports = (req, res) => {
   mailgun.messages().send({
     from: `Liquid Vote <info@${process.env.MAILGUN_DOMAIN}>`,
     to: email || 'missing-email@liquid.vote',
-    bcc: 'info@liquid.vote',
+    bcc: 'info@liquid.vote', // eslint-disable-line sort-keys
     subject: 'Thanks for supporting Liquid Democracy',
+    // eslint-disable-next-line sort-keys
     html: `Hi ${firstName || ''},
 
     Here's confirmation of your endorsement and/or pledge for Liquid Democracy, via <a href="https://contribute.liquid.vote">https://contribute.liquid.vote</a>.
@@ -82,13 +83,13 @@ module.exports = (req, res) => {
   })
 
   r.table('endorsements').insert({
+    approved: false,
+    created: r.now(),
+    displayName,
     email,
     endorsement,
     pledge,
-    displayName,
     zip,
-    approved: false,
-    created: r.now(),
   }).run(req.app.locals.dbConn)
 
 }

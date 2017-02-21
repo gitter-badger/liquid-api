@@ -3,8 +3,9 @@ const mailgun = new (require('mailgun-js'))({ apiKey: process.env.MAILGUN_API_KE
 module.exports = email => mailgun.messages().send({
   from: `Liquid Vote <info@${process.env.MAILGUN_DOMAIN}>`,
   to: email,
-  bcc: 'david@liquid.vote',
+  bcc: 'david@liquid.vote', // eslint-disable-line sort-keys
   subject: 'Liquid Democracy signup confirmed',
+  // eslint-disable-next-line sort-keys
   html: `Hi,
 
   This confirms your registration for Liquid Democracy. Thank you.

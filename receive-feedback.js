@@ -12,7 +12,8 @@ module.exports = (req, res) => {
   mailgun.messages().send({
     from: `LV Feedback <info@${process.env.MAILGUN_DOMAIN}>`,
     to: 'info@liquid.vote',
-    subject: 'Liquid Vote feedback',
+    subject: 'Liquid Vote feedback', // eslint-disable-line sort-keys
+    // eslint-disable-next-line sort-keys
     html: `${text}
 
     ---
