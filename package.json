@@ -23,6 +23,7 @@
     "mailgun-js": "^0.8.0",
     "newrelic": "^1.35.1",
     "random-word": "^2.0.0",
+    "randomstring": "^1.1.5",
     "rethinkdb": "^2.3.3",
     "twilio": "^2.11.1"
   },

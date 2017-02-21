@@ -23,6 +23,7 @@ const r = require('rethinkdb')
 const sendLoginSMS = require('./send-login-sms')
 const sendRegistrationSMS = require('./send-registration-sms')
 const randomWord = require('random-word')
+const randomstring = require('randomstring')
 
 module.exports = (req, res) => {
   const { phone } = req.body
@@ -49,6 +50,7 @@ module.exports = (req, res) => {
       // Insert the new phone number into voters table
       r.table('users').insert({
         first_seen: r.now(),
+        inviteCode: randomstring(8),
         phone,
         registrationSecret,
         secret: `${randomWord()}-${randomWord()}-${randomWord()}`,
